@@ -1,0 +1,34 @@
+lex finem.l
+cc lex.yy.c -ll
+./a.out
+
+---------------------------------------------------------------------------
+
+114	33	2121	26	1221
+
+----------------------------------------------------------------------------
+
+.* → . means any character except newline, * means 0 or more times.
+
+-----------------------------------------------------------------------------
+
+Explanation: "/*"([^*]|[*][^/])*"*/"
+
+"/*" → start of comment
+
+([^*]|[*][^/])* →
+
+[^*] → any character that is not *
+
+[*][^/] → a * that is not followed by /
+
+| means OR
+
+* repeats it many times
+
+"*/" → end of comment
+
+This way, it matches everything between /* and */, 
+without running away to the very last */.
+
+------------------------------------------------------------------------------
